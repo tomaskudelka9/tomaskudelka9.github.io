@@ -1,18 +1,154 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Github Pages</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; color: #333; }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .status { color: #666; font-style: italic; }
+        /* Definice barevné palety */
+        :root {
+            --bg-color: #0a0a0a;       /* Sytá černá */
+            --card-bg: #161616;        /* Lehce světlejší černá pro karty */
+            --accent-blue: #007bff;    /* Primární modrá */
+            --light-blue: #00d4ff;     /* Světle modrá pro hover efekty */
+            --text-main: #e0e0e0;      /* Světle šedá pro text */
+            --text-dim: #a0a0a0;       /* Tlumená šedá */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--accent-blue);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: var(--accent-blue);
+            margin: 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--light-blue);
+        }
+
+        .hero {
+            padding: 100px 5%;
+            text-align: center;
+            background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%);
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .blue-text {
+            color: var(--accent-blue);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: #1f1f1f;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--light-blue);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
     </style>
 </head>
 <body>
-    <h1>Vítejte na mé stránce</h1>
-    <p class="status">     Web je aktuálně ve fázi přípravy.</p>
-    <p>Tato stránka běží na GitHub Pages.</p>
-    
+
+    <header>
+        <h1>Portfolio<span style="color: white;">Kudělka</span></h1>
+        <nav>
+            <a href="#">Domů</a>
+            <a href="#">Projekty</a>
+            <a href="#">Kontakt</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Precizní <span class="blue-text">Řešení</span></h2>
+        <p>Vítejte na stránce navržené s důrazem na kontrast a technickou eleganci.</p>
+        <br>
+        <a href="#" class="btn">Zobrazit práci</a>
+    </section>
+
+    <div class="container">
+        <div class="card">
+            <h3 class="blue-text">Analýza dat</h3>
+            <p>Zpracování komplexních systémů s vysokou přesností a minimální chybovostí.</p>
+        </div>
+        <div class="card">
+            <h3 class="blue-text">Konstrukce</h3>
+            <p>Moderní přístup k návrhu struktur a uživatelských rozhraní v tmavém režimu.</p>
+        </div>
+        <div class="card">
+            <h3 class="blue-text">Optimalizace</h3>
+            <p>Zvyšování efektivity stávajících procesů pomocí pokročilých technologií.</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Inženýr Tomáš Kudělka. Všechna práva vyhrazena.
+    </footer>
+
 </body>
 </html>
+
