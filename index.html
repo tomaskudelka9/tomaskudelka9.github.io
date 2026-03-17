@@ -1,49 +1,65 @@
-<!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Github Pages</title>
+    <title>Inženýrské Portfolio | Tomáš Kudělka</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Definice barevné palety */
+        /* Definice barevné palety a písem */
         :root {
             --bg-color: #0a0a0a;       /* Sytá černá */
-            --card-bg: #161616;        /* Lehce světlejší černá pro karty */
-            --accent-blue: #007bff;    /* Primární modrá */
-            --light-blue: #00d4ff;     /* Světle modrá pro hover efekty */
-            --text-main: #e0e0e0;      /* Světle šedá pro text */
-            --text-dim: #a0a0a0;       /* Tlumená šedá */
+            --card-bg: #161616;        /* Tmavě šedá pro karty */
+            --accent-blue: #007bff;    /* Primární inženýrská modrá */
+            --light-blue: #00d4ff;     /* Azurová pro efekty */
+            --text-main: #e0e0e0;      /* Hlavní světlý text */
+            --text-dim: #a0a0a0;       /* Tlumený text */
+            --font-fancy: 'Fredoka One', cursive; /* Podobné stylu Chooky Cooky */
+            --font-main: 'Inter', sans-serif;
         }
 
+        /* Základní reset a tělo */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-main);
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
+        /* Hlavička - smazán kontakt */
         header {
-            background-color: var(--card-bg);
+            background-color: rgba(22, 22, 22, 0.95);
             border-bottom: 2px solid var(--accent-blue);
-            padding: 1rem 5%;
+            padding: 1rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         header h1 {
+            font-family: var(--font-fancy);
             color: var(--accent-blue);
             margin: 0;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+
+        header h1 span {
+            color: white;
         }
 
         nav a {
             color: var(--text-main);
             text-decoration: none;
-            margin-left: 20px;
+            margin-left: 25px;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
@@ -51,103 +67,220 @@
             color: var(--light-blue);
         }
 
+        /* Hero sekce */
         .hero {
-            padding: 100px 5%;
+            padding: 120px 10%;
             text-align: center;
-            background: linear-gradient(180deg, var(--card-bg) 0%, var(--bg-color) 100%);
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
         }
 
         .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-family: var(--font-fancy);
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
         }
 
         .blue-text {
             color: var(--accent-blue);
+            text-shadow: 2px 2px 10px rgba(0, 123, 255, 0.4);
         }
 
+        /* Kontejnery a mřížky */
         .container {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 60px auto;
             padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-fancy);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        /* Projekty - Mřížka */
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
         }
 
-        .card {
+        /* Styl rozklikávací karty */
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card {
             background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-blue);
-            transition: transform 0.3s;
+            border: 1px solid #222;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            background-color: #1f1f1f;
+        .project-link:hover .project-card {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 15px 30px rgba(0, 123, 255, 0.25);
         }
 
+        /* Obrázek v kartě - upraveno pro skutečné obrázky */
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-color: #252525; /* Zůstává jako barva pozadí, pokud se obrázek nenačte */
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Obrázek vyplní obdélník, ořízne se */
+            opacity: 0.8;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .project-link:hover .project-image img {
+            opacity: 1;
+            transform: scale(1.05); /* Jemné přiblížení při najetí */
+        }
+
+        /* Obsah karty */
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            color: var(--light-blue);
+            text-transform: uppercase;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .project-card h3 {
+            font-family: var(--font-fancy);
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .project-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Tlačítko */
         .btn {
             display: inline-block;
             background-color: var(--accent-blue);
             color: white;
-            padding: 12px 25px;
+            padding: 15px 35px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 50px;
             font-weight: bold;
-            transition: background 0.3s;
+            font-family: var(--font-main);
+            transition: all 0.3s;
+            margin-top: 20px;
         }
 
         .btn:hover {
             background-color: var(--light-blue);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
         }
 
+        /* Patička */
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 60px 20px;
             color: var(--text-dim);
-            font-size: 0.9rem;
-            border-top: 1px solid #222;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 100px;
+        }
+
+        /* Mobilní optimalizace */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2.5rem; }
+            header { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 10px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Tomáš<span style="color: white;">Kudělka</span></h1>
+        <h1>Portfolio<span>Kudělka</span></h1>
         <nav>
-            <a href="#">Domů</a>
-            <a href="#">Projekty</a>
-            <a href="#">Kontakt</a>
-        </nav>
+            <a href="#domu">Domů</a>
+            <a href="#projekty">Projekty</a>
+            </nav>
     </header>
 
-    <section class="hero">
-        <h2>Precizní <span class="blue-text">Řešení</span></h2>
-        <p>Vítejte na stránce navržené s důrazem na kontrast a eleganci.</p>
-        <br>
+    <section class="hero" id="domu">
+        <h2>Precizní <span class="blue-text">Inženýrství</span></h2>
+        <p>Vítejte. Zde naleznete spojení funkčnosti, designu a moderních technologií.</p>
+        <a href="#projekty" class="btn">Prozkoumat projekty</a>
     </section>
 
-    <div class="container">
-        <div class="card">
-            <h3 class="blue-text">Analýza dat</h3>
-            <p>Zpracování komplexních systémů s vysokou přesností a minimální chybovostí.</p>
+    <main class="container" id="projekty">
+        <h2 class="section-title">Naše <span class="blue-text">Projekty</span></h2>
+        
+        <div class="projects-grid">
+            
+            <a href="detail-prodej.html" class="project-link">
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="prodej.jpg" alt="Prodej projektů a nemovitostí">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Komerční Sféra</span>
+                        <h3>Prodej projektů</h3>
+                        <p>Kompletní inženýrská a technická dokumentace pro prodejní celky, nemovitosti a stavební projekty.</p>
+                    </div>
+                </article>
+            </a>
+
+            <a href="detail-home.html" class="project-link">
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="home.jpg" alt="Chytré a moderní domácnosti">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Rezidenční</span>
+                        <h3>Home projekty</h3>
+                        <p>Navrhujeme a realizujeme moderní bydlení. Specializace na chytré domácnosti, inteligentní instalace, automatizaci a designové interiéry na míru.</p>
+                    </div>
+                </article>
+            </a>
+
+            <a href="detail-dalsi.html" class="project-link">
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="dalsi.jpg" alt="Technologický vývoj a inovace">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-tag">Technologie</span>
+                        <h3>Další vývoj</h3>
+                        <p>Výzkum a vývoj, specifická technická řešení, optimalizace výrobních procesů a inovativní prototypování pro průmyslové aplikace.</p>
+                    </div>
+                </article>
+            </a>
+
         </div>
-        <div class="card">
-            <h3 class="blue-text">Konstrukce</h3>
-            <p>Moderní přístup k návrhu struktur a uživatelských rozhraní v tmavém režimu.</p>
-        </div>
-        <div class="card">
-            <h3 class="blue-text">Optimalizace</h3>
-            <p>Zvyšování efektivity stávajících procesů pomocí pokročilých technologií.</p>
-        </div>
-    </div>
+    </main>
 
     <footer>
-        &copy; 2026 Inženýr Tomáš Kudělka. Všechna práva vyhrazena.
+        <p>&copy; 2026 Inženýr Tomáš Kudělka. Všechna práva vyhrazena.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Vytvořeno s důrazem na kvalitu a detail.</p>
     </footer>
 
 </body>
 </html>
-
